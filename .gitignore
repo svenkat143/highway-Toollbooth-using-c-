@@ -1,32 +1,1225 @@
-# Prerequisites
-*.d
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+#include <ctime>
+#include<fstream>
+#include <conio.h>
+using namespace std;
+int add(void);
+void card(void);
+int pass(void);
+int file(void);
+int det(void);
+int dett(void);
+int deta(void);
+int pas(void);
+class car	{
+private:
+	char *title;
+		char* dt ;
+	
+public:	
+	car()	{
+		title=new char[20];
+		int ID;
+	
+	}
+	void feeddata()
+		{
+			
+		 time_t now = time(0);
+   
+   // convert now to string form
+   dt = ctime(&now);
+	ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+//	cout<<"Enter the vehicle no: ";      cin.getline(title,20);  
+	//myfile << "Car No : " << title << endl;
+	myfile << "passed through the toll gate at time : " << dt;
+	myfile.close();
+	}
+	void showdata()
+	{
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+	cout<<"\n the vehicle no: "<<title<<" passed through the tollgate at "<<dt;
+	cout<<"\n Please enter the details of the vehicle again";
+	
+}
+void receipt()
+{ int ID;char *t;
+ time_t now = time(0);
+    t = ctime(&now);
+		ID = rand() % 10000000 + 100000000;
+	if (ID<0)
+	ID=(ID*-1);
+		ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+	cout<<"Your Receipt Id is :"<<ID<<endl;
+		myfile << "The Receipt ID of the vehicle is : " << ID << endl<<"\n\n";
+	cout<<" for the car which passed through the tollgate at "<<t;
+		myfile.close();
+}
+	int search(char tbuy[20])
+	{
+	if(strcmp(tbuy,title)==0 )
+		return 1;
+	else return 0;
+		}
+		int storedata();
+		
+};
+int count(int &cash,int &fee, int &reciept, int &totalvehicles)
+{
+	
+	cash=cash+fee;
+	reciept=reciept+1;
+	totalvehicles=totalvehicles+1;
+	
+	return 0;
+} 
 
-# Precompiled Headers
-*.gch
-*.pch
+int entry(int &amount,int &fee, int &weight, int &exchange)
+{   
+			 	ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+	  cout<<"Deposit the due amount"<<endl;
+	cin>>amount;
+	myfile << "Money paid by customer : " << amount << endl; 
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+			while(amount<fee)
+			 			    {
+			cout<<"Enter amount again(must be more than "<<fee<<" )"<<endl;
+				cout<<"Deposit the amount: "<<endl;
+			cin>>amount;
+			myfile << "Money paid by customer again : " << amount << endl; 
+		}
+			
+							exchange=amount-fee;
+			cout<<"Money TO be returned to customer: "<<exchange<<endl;
+				myfile << "Money returned back to the customer is :- " << exchange << endl; 
+			cout<<"-----------------------------------------------"<<endl;
+			cout<<endl;
+			return 0;
+			myfile.close();	
+}
+int main()
+{ 
+string search;
+	int offset;
+	string line; 
+system("color f1");  	
+{
+	start:
+	
+     cout<<"   **          **  *******  *        *******  *******  **       **  *******\n";
+	 cout<<"   **          **  **       *        *        *     *  *  *   *  *  *      \n";
+     cout<<"   **    **    **  *******  *        *        *     *  *    *    *  ****   \n";
+	 cout<<"   **  **   ** **  **       *        *        *     *  *         *  *      \n";
+	 cout<<"   **          **  *******  *******  *******  *******  *         *  *******\n\n";
+	 cout<<"                          ********   **    \n";
+	 cout<<"                             **     *  *\n";
+	 cout<<"                             **    *    *\n";
+     cout<<"                             **     *  *\n";
+     cout<<"                             **      ** \n\n";
+std::cout<<" ********   **    *     *        *****     **      **   ********  *   *"<<std::endl;
+     cout<<"    **     *  *   *     *        *    *   *  *    *  *     **     *   *"<<endl;
+     cout<<"    **    *    *  *     *        *****   *    *  *    *    **     *****"<<endl;
+     cout<<"    **     *  *   *     *        *    *   *  *    *  *     **     *   *"<<endl;
+     cout<<"    **      **    ***** *****    *****     **      **      **     *   *"<<endl;
+    
+} 
+{
+	cout<<endl<<endl<<endl;
+	time_t t = time(NULL);
+	tm* timePtr = localtime(&t);
+	cout << "Time of the computer presently:";
+	cout << "seconds= " << timePtr->tm_sec << endl;
+	cout << "minutes = " << timePtr->tm_min << endl;
+	cout << "hours = " << timePtr->tm_hour << endl;
+	cout << "day of month = " << timePtr->tm_mday << endl;
+	cout << "month of year = " << timePtr->tm_mon << endl;
+	cout << "year = " << timePtr->tm_year + 1900 << endl;
+	cout << "weekday = " << timePtr->tm_wday << endl;
+	cout << "day of year = " << timePtr->tm_yday << endl;
+	}
+char a;
+	int l;
+while(a!='N')
 
-# Fortran module files
-*.mod
-*.smod
+{
+	do
+	{
+	cout<<endl<<endl<<endl;
+	cout<<"Enter: "<<endl;
+	cout<<" Y for starting the program."<<endl;
+	cout<<" D for getting the detailed record of the vehicles entered"<<endl;
+	cout<<" T for getting the detailed record of the registerd Fast tag users "<<endl;
+	cout<<" M for getting the detailed record of the Monthly pass users "<<endl;
+	cout<<" I for getting the Program info."<<endl;
+	cout<<" N for closing the program."<<endl;
+    cin>>a;
+    switch(a)
+    {
+    case'Y':
+{
+	char t;
+	system("CLS");
+	strt:
+		int q;
+	cout<<"enter"<<endl;
+	cout<<"1 for creation of new fast card service."<<endl;
+	cout<<"2 for creation of monthly pass service."<<endl;
+	cout<<"3 for starting the main tollbooth program."<<endl;
+	cin>>q;
+	
+	if((q==1))
+	{
+		do
+		{
+		card();
+		cout << endl << "Press 'e' to create new fast tag." << endl;
+} while (getch()=='e');
+		}
+			else if((q==2))
+			{do
+			{
+				pass();
+				cout << endl << "Press 'e'to create new Monthly pass." << endl;
+	cout << endl;
+} while (getch()=='e');
+			}
+		else if((q==3))
+		{
+lan :	
+	int o;
+	cout<<"Enter: "<<endl;
+	cout<<" 1 For Lane 1."<<endl;
+	cout<<" 2 For Lane 2."<<endl;
+	cout<<" 3 For Lane 3."<<endl;
+	cout<<" 4 For Lane 4."<<endl;
+	cout<<" 5 For Lane 5."<<endl;
+	cout<<" 6 For Lane 6."<<endl;
+	cout<<" 7 For Fast tag Lane."<<endl;
+	cout<<" 8 For Monthly Pass Lane ."<<endl;
+	cin>>o;
+	if((o==1)||(o==2)||(o==3)||(o==4)||(o==5)||(o==6))
+	{
+		opr :
+	char l;
+	cout<<"Enter: "<<endl;
+	cout<<" A for operator 1."<<endl;
+	cout<<" B for operator 2."<<endl;
+	cout<<" C for operator 3."<<endl;
+	cout<<" D for operator 4."<<endl;
+	cout<<" E for operator 5."<<endl;
+	cout<<" F for operator 6."<<endl;
+    cin>>l;
+    switch(l)
+    {
+    case'A':
+	{
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "Operator 1 colleted the tax." << endl; 
+	myfile.close();
+	add();
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+}
+case'B':
+	{
+				ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "Operator 2 colleted the tax." << endl; 
+	myfile.close();
+		add();
+	}
+	case'C':
+	{
+				ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "Operator 3 colleted the tax." << endl; 
+	myfile.close();
+		add();
+		
+	}
+	case'D':
+	{
+				ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "Operator 4 colleted the tax." << endl; 
+	myfile.close();
+		add();
+		
+	}
+	case'E':
+	{
+				ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "Operator 5 colleted the tax." << endl; 
+	myfile.close();
+		add();
+		
+	}
+	break;
+	default:
+		cout<<"enter correct operator";
+	}
+cout << endl << "Press 'k' to choose the correct operator again." << endl;
+cout << endl << "Press 'f' to go back to select the lane." << endl;
+cout << endl << "Press 'e' to go back to the creation menu of program." << endl;
+cout << endl << "Press 'g' to go back to the main menu of program." << endl;
+	cin>>t;
+if(t=='e')
+{
+	system("CLS");
+	goto strt;
+	
+}
+else if(t=='f')
+{
+		system("CLS");
+	goto lan;
+	system("CLS");
+}
+else if(t=='g')
+{
+		system("CLS");
+	goto start;
+}
+else if(t=='k')
+{
+		system("CLS");
+	goto opr;
+}
 
-# Executables
-*.exe
-*.out
-*.app
+}
+	
+else if(o==7)
+{ int t,r;
+cp :
+cout<<"Enter 1 for up"<<endl;
+cout<<"Enter 2 for down"<<endl;
+cin>>r;
+if(r==1)
+{int search;
+	int offset;
+	string line;
+
+	ifstream yfile;
+	yfile.open("tag.txt");
+	cout<<"Enter fast tag ID:-"<<endl;
+	cin>>search;
+	if(yfile.is_open())
+	{
+		while(!yfile.eof())
+		{
+			getline(yfile,line);
+			if((offset = line.find(search,0)) !=string::npos)
+			{
+				cout<<"amount deducted from the fast tag with ID "<<search<<endl;
+			}
+					}
+	yfile.close();	
+	}
+	char v;
+	cout<<"enter 'v' to choose direction"<<endl;
+	cin>>v;
+	if(v=='v')
+	{
+		goto cp;
+	}
+}
+else if(r==2)
+{
+	int search;
+
+	ifstream yfile;
+	yfile.open("tag.txt");
+	cout<<"Enter fast tag ID:-"<<endl;
+	cin>>search;
+	if(yfile.is_open())
+	{
+		while(!yfile.eof())
+		{
+			getline(yfile,line);
+			if((offset = line.find(search,0)) !=string::npos)
+			{
+				cout<<"amount deducted from the fast tag with ID "<<search<<endl;
+			}
+					}
+	yfile.close();	
+	}
+	char v;
+	cout<<"enter 'v' to choose direction"<<endl;
+	cin>>v;
+	if(v=='v')
+	{
+		goto cp;
+	}
+}
+}
+else if(o==8)
+{ int t,r;
+up:
+cout<<"Enter 1 for up"<<endl;
+cout<<"Enter 2 for down"<<endl;
+cin>>r;
+if(r==1)
+{string search;
+	int offset;
+	string line;
+int sea;
+	ifstream yfile;
+	yfile.open("pass.txt");
+	cout<<"Enter Monhly pass ID:-"<<endl;
+	cin>>sea;
+	cout<<"Enter vehicle no :-"<<endl;
+	cin>>search;
+	
+	if(yfile.is_open())
+	{
+		while(!yfile.eof())
+		{
+			getline(yfile,line);
+			if((offset = line.find(search,0)) !=string::npos)
+			{
+				cout<<"The vehicle no :"<<search<<"is registered with monthly pass service"<<endl;
+			}
+								}
+	yfile.close();	
+	}
+	char v;
+	cout<<"enter 'v' to choose direction"<<endl;
+	cin>>v;
+	if(v=='v')
+	{
+		goto up;
+	}
+}
+else if(r==2)
+{string search;
+	int offset;
+	string line;
+int sea;
+	ifstream yfile;
+	yfile.open("pass.txt");
+	cout<<"Enter Monhly pass ID:-"<<endl;
+	cin>>sea;
+	cout<<"Enter vehicle no :-"<<endl;
+	cin>>search;
+	
+	if(yfile.is_open())
+	{
+		while(!yfile.eof())
+		{
+			getline(yfile,line);
+			if((offset = line.find(search,0)) !=string::npos)
+			{
+				cout<<"The vehicle no :"<<search<<"is registered with monthly pass service"<<endl;
+			}
+				}
+	yfile.close();
+	}
+		char v;
+	cout<<"enter 'v' to choose direction"<<endl;
+	cin>>v;
+	if(v=='v')
+	{
+		goto up;
+	}
+}
+else{
+		cout << endl << "You have entered the wrong lane." << endl;
+cout << endl << "Press 'e' to again choose the correct lane." << endl;
+	cout << endl;
+}
+}
+}
+cout<<" Enter the correct lane";
+cout << endl << "Press 'f' to go back to select the lane." << endl;
+cout << endl << "Press 'e' to go back to the creation menu of program." << endl;
+cout << endl << "Press 'g' to go back to the main menu of program." << endl;
+	cin>>t;
+if(t=='e')
+{
+	system("CLS");
+	goto strt;
+	
+}
+else if(t=='f')
+{
+		system("CLS");
+	goto lan;
+	system("CLS");
+}
+else if(t=='g')
+{
+		system("CLS");
+	goto start;
+}
+}	break;
+case'D':
+	{
+		system("CLS");
+		det();
+		char y;
+		cout<<endl<<endl<<endl<<"Press 'e' to get back to the main menu";
+		cin>>y;
+		goto start;
+			}
+	break;
+	case'T':
+		{
+			dett();
+				char y;
+		cout<<endl<<endl<<endl<<"Press 'e' to get back to the main menu";
+		cin>>y;
+		goto start;
+		}
+		break;
+		case'M':
+			{
+				deta();
+					char y;
+		cout<<endl<<endl<<endl<<"Press 'e' to get back to the main menu";
+		cin>>y;
+		goto start;
+			}
+			break;
+case'I':
+	{
+		system("CLS");
+		cout<<"Program is about Toll Booth."<<endl;
+		cout<<"This code belongs to S.Venkat     Registration no:-11803610      Lovely Professional University  ";
+		cout<<""<<endl;
+		cout<<"******************************************************************************************************************************"<<endl;
+		cout<<"Features of this program:"<<endl;
+		cout<<"1- Detailed report of the vechicles passed"<<endl;
+		cout<<"2- Detailed report of the fast tags created"<<endl;
+		cout<<"3- Detailed report of the Monthly passes created"<<endl;
+		cout<<"4- Creation of fast tag for the user"<<endl;
+		cout<<"5- Creation of monthly pass for the user"<<endl;
+		cout<<"6- Passage of the vechiles according to the lane"<<endl;
+		cout<<"7- Collection of tax from the vehicles operator wise."<<endl;
+		cout<<"8-  Total cash earned in a day."<<endl;
+        cout<<"9-  Total No. of vehicles passed."<<endl;
+        cout<<"10-  Respective fee of each type of vehicle."<<endl;
+        cout<<"11-  Reciept number."<<endl;
+        cout<<"12-  Government vehicles."<<endl;
+        cout<<"13-  weight of vehicle(if more than 100,,,double cash should be paid by the customer).."<<endl; 
+        cout<<"14-  Background and Text color."<<endl;
+        cout<<"15-  Count of each type of vehicle."<<endl;
+		char t;	
+cout << endl << "Press 'g' to go back to the main menu of program." << endl;
+	cin>>t;
+ if(t=='g')
+{
+		system("CLS");
+	goto start;
+}
+	}
+break;
+     case'N':
+	 {
+	 	cout<<"Take Care. Program has ended.";
+	  } 
+	  break;
+	  default:
+	  	{
+	  		cout<<"Enter valid command."<<endl;
+		  }
+}
+cout<<"enter 'e' to ge back to the options  ";
+} while (getch()=='e');
+return 0;
+}
+}
+
+
+
+
+
+int add()
+{
+//	do{
+	car *B[20];
+	int r,t,choice;
+	char titlebuy[20];
+    
+char n,f, stats; 
+int Truck=0, Bus=0, Motorbike=0, GovernmentCar=0, Van=0, Car=0;
+system("CLS");    	
+cout<<"Please choose: "<<endl;
+cout<<"U  For upward ."<<endl;
+cout<<"D For downward. "<<endl;
+char s;
+int i=1,weight, cash=0, reciept=0, totalvehicles=0, Exchange, Amount;
+char vehicle ; 
+cin>>s;
+switch(s)
+{
+		case'U':
+		{
+				ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle is going upward" << endl; 
+	myfile.close();
+					car *B[20];
+	int x=0,r,t,choice;
+	char titlebuy[20];
+				cup :
+
+						 //cin.ignore();
+			//	cout<<"\nEnter the vehicle no : "; cin.getline(titlebuy,20);
+				
+				//for(t=0;t<x;t++)
+									string search;
+	int offset;
+	string line;
+	ifstream yfile;
+	yfile.open("ven.txt");
+		  myfile.open ("ven.txt",ios::out|ios::app);
+	cout<<"Enter the vechicle :-"<<endl;
+	cin>>search;
+	if(yfile.is_open())
+	{
+		while(!yfile.eof())
+		{
+			getline(yfile,line);
+			if((offset = line.find(search,0)) !=string::npos)
+			{
+				cout<<"The vehicle "<<search<<" passed through the tollgate today the total tax will be reduced to half "<<endl;
+			}
+		}
+	yfile.close();	
+	}
+		myfile << "Car No : " << search << endl;
+		myfile.close();
+		
+					B[x] = new car;
+				B[x]->feeddata();
+	x++;
+
+				
+	cout<<"Enter the type of vehicle "<<endl;
+	cout<<"M for MOtorbike"<<endl;
+	cout<<"C for car"<<endl;
+	cout<<"G for Government vehicles"<<endl;
+	cout<<"V for Van"<<endl;
+	cout<<"T for Truck"<<endl;
+	cout<<"B for Bus"<<endl;
+	cin>>vehicle;
+	if(vehicle=='T'||vehicle=='B'||vehicle=='C'||vehicle=='V'||vehicle=='M'||vehicle=='G')
+	
+	  
+		if(vehicle=='T')		
+			{ 
+					ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a truck." << endl; 
+	myfile.close();	
+				system("color f1");
+				int fee=250;
+				
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                       //using function		
+	 		    Truck=Truck+1;
+				 			
+	}
+		else if(vehicle=='C')
+		
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a car." << endl; 
+	myfile.close();		int fee=200;
+		 	system("color f1");
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                            //using function
+		 	  Car=Car+1;
+		}
+		
+		else if(vehicle=='M')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a Motorbike." << endl; 
+	myfile.close();		int fee=150;
+			system("color f1");
+			 entry(Amount,fee,weight,Exchange);
+			 count(cash,fee,reciept,totalvehicles);                                               //using function
+			 Motorbike=Motorbike+1;
+		}
+					
+		else if(vehicle=='B')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a Bus." << endl; 
+	myfile.close();		int fee=250;
+			system("color f1");
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                               //using function
+			  Bus=Bus+1;
+			}		
+			
+		else if(vehicle=='V')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a van." << endl; 
+	myfile.close();		int fee=200;
+			system("color f1");
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                    //using functions
+			  Van=Van+1;
+			}	  
+		
+		else if(vehicle=='G')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a Government Vehicle." << endl<<"Hence no tax is colledted from it"; 
+	myfile.close();	system("color f1");
+		 std::cout<<"Government car...no collection of cash"<<std::endl;
+			totalvehicles=totalvehicles+1;
+			cash=cash;
+			reciept=reciept;
+		    GovernmentCar=GovernmentCar+1;
+		}
+		
+		else if(vehicle=='O')
+			{  system("color f1");
+			 std::cout<<"Program will close now"<<std::endl;
+				i=-1;
+				exit(1);
+			}
+			
+		else
+		{ cout<<"Invalid Entry"<<endl;
+		cout<<"Enter the vehicle type  again: "<<endl;
+	    
+	}
+	pubg:
+	char z;
+	cout<<"Enter 'p' to print Receipt of the vehicle"<<endl;
+	cout<<"Enter 'x' to know the Days vehicles statistics :-"<<endl;
+cin>>z;
+	if(z=='p')
+	{
+	B[i]->receipt();
+	char u;
+	cout<<endl<<"enter 'u' to enter new car details :"<<endl;
+	cout<<"enter any other key to change the direction";
+	cin>>u;
+	if(u=='u')
+	{
+		system("CLS");
+		goto cup;
+	}
+	
+}
+
+
+ else if(z=='x')
+ {
+ 	system("CLS");
+ 	goto pub;
+ }
+
+break;
+pub :
+	
+  system("color f1");
+  cout<<"Report of vehicles passed today: "<<endl<<endl;
+	cout<<"Total Cash Earned Today: "<<cash<<std::endl;
+	cout<<"Total Vehicles passed today: "<<totalvehicles<<endl;
+	cout<<"Reciepts sold today: "<<reciept<<endl;
+	
+	while (stats!='E')
+	{
+	cout<<"Enter S for Detailed vehicle stats. Or press E key to end program."<<endl;
+	cin>>stats;
+	system("CLS");
+	switch(stats)
+	{
+	
+	case'S':	
+	{
+		cout<<"Trucks Passed today     		: "<<Truck<<endl;
+		cout<<"Busses Passed today     		: "<<Bus<<endl;
+		cout<<"Vans passed today            : "<<Van<<endl;
+		cout<<"Cars passed today            : "<<Car<<endl;
+		cout<<"Motorbikes passed today      : "<<Motorbike<<endl;
+		cout<<"Government Cars passed today : "<<GovernmentCar<<endl;
+}
+}
+}
+
+}
+break;
+case'D':
+			{
+				ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle is going upward" << endl; 
+	myfile.close();
+					car *B[20];
+	int x=0,r,t,choice;
+	char titlebuy[20];
+				vup :
+
+						 //cin.ignore();
+			//	cout<<"\nEnter the vehicle no : "; cin.getline(titlebuy,20);
+				
+				//for(t=0;t<x;t++)
+									string search;
+	int offset;
+	string line;
+	ifstream yfile;
+	yfile.open("ven.txt");
+		  myfile.open ("ven.txt",ios::out|ios::app);
+	cout<<"Enter the vechicle :-"<<endl;
+	cin>>search;
+	if(yfile.is_open())
+	{
+		while(!yfile.eof())
+		{
+			getline(yfile,line);
+			if((offset = line.find(search,0)) !=string::npos)
+			{
+				cout<<"The vehicle "<<search<<" passed through the tollgate today so th"<<endl;
+			}
+		}
+	yfile.close();	
+	}
+		myfile << "Car No : " << search << endl;
+		myfile.close();
+		
+					B[x] = new car;
+				B[x]->feeddata();
+	x++;
+
+				
+	cout<<"Enter the type of vehicle "<<endl;
+	cout<<"M for MOtorbike"<<endl;
+	cout<<"C for car"<<endl;
+	cout<<"G for Government vehicles"<<endl;
+	cout<<"V for Van"<<endl;
+	cout<<"T for Truck"<<endl;
+	cout<<"B for Bus"<<endl;
+	cin>>vehicle;
+	if(vehicle=='T'||vehicle=='B'||vehicle=='C'||vehicle=='V'||vehicle=='M'||vehicle=='G')
+	
+	  
+		if(vehicle=='T')		
+			{ 
+					ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a truck." << endl; 
+	myfile.close();	
+				system("color f1");
+				int fee=250;
+				
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                       //using function		
+	 		    Truck=Truck+1;
+				 			
+	}
+		else if(vehicle=='C')
+		
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a car." << endl; 
+	myfile.close();		int fee=200;
+		 	system("color f1");
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                            //using function
+		 	  Car=Car+1;
+		}
+		
+		else if(vehicle=='M')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a Motorbike." << endl; 
+	myfile.close();		int fee=150;
+			system("color f1");
+			 entry(Amount,fee,weight,Exchange);
+			 count(cash,fee,reciept,totalvehicles);                                               //using function
+			 Motorbike=Motorbike+1;
+		}
+					
+		else if(vehicle=='B')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a Bus." << endl; 
+	myfile.close();		int fee=250;
+			system("color f1");
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                               //using function
+			  Bus=Bus+1;
+			}		
+			
+		else if(vehicle=='V')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a van." << endl; 
+	myfile.close();		int fee=200;
+			system("color f1");
+			  entry(Amount,fee,weight,Exchange);
+			  count(cash,fee,reciept,totalvehicles);                                    //using functions
+			  Van=Van+1;
+			}	  
+		
+		else if(vehicle=='G')
+		{ 
+			ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+		myfile << "The vehicle type is a Government Vehicle." << endl<<"Hence no tax is colledted from it"; 
+	myfile.close();	system("color f1");
+		 std::cout<<"Government car...no collection of cash"<<std::endl;
+			totalvehicles=totalvehicles+1;
+			cash=cash;
+			reciept=reciept;
+		    GovernmentCar=GovernmentCar+1;
+		}
+		
+		else if(vehicle=='O')
+			{  system("color f1");
+			 std::cout<<"Program will close now"<<std::endl;
+				i=-1;
+				exit(1);
+			}
+			
+		else
+		{ cout<<"Invalid Entry"<<endl;
+		cout<<"Enter the vehicle type  again: "<<endl;
+	    
+	}
+	char z;
+	cout<<"Enter 'p' to print Receipt of the vehicle"<<endl;
+	cout<<"Enter 'x' to know the Days vehicles statistics :-"<<endl;
+cin>>z;
+	if(z=='p')
+	{
+	B[i]->receipt();
+	char u;
+	cout<<endl<<"enter 'u' to enter then details of new vechile:"<<endl;
+	cout<<"Press any other key to change direction."<<endl;
+	cin>>u;
+	if(u=='u')
+	{
+		system("CLS");
+		goto vup;
+	}
+	
+}
+
+
+ else if(z=='x')
+ {
+ 	system("CLS");
+ 	goto pug;
+ }
+
+break;
+pug :
+	
+  system("color f1");
+  cout<<"Report of vehicles passed today: "<<endl<<endl;
+	std::cout<<"Total Cash Earned Today: "<<cash<<std::endl;
+	cout<<"Total Vehicles passed today: "<<totalvehicles<<endl;
+	cout<<"Reciepts sold today: "<<reciept<<endl;
+	
+	while (stats!='E')
+	{
+	cout<<"Enter S for Detailed vehicle stats. Or press E key to end program."<<endl;
+	cin>>stats;
+	system("CLS");
+	switch(stats)
+	{
+	
+	case'S':	
+	{
+		cout<<"Trucks Passed today     		: "<<Truck<<endl;
+		cout<<"Busses Passed today     		: "<<Bus<<endl;
+		cout<<"Vans passed today            : "<<Van<<endl;
+		cout<<"Cars passed today            : "<<Car<<endl;
+		cout<<"Motorbikes passed today      : "<<Motorbike<<endl;
+		cout<<"Government Cars passed today : "<<GovernmentCar<<endl;
+}
+}
+}
+
+}
+ 
+//cout << endl << "You have entered the wrong chice." << endl;
+//cout << endl << "Press 'e' to go back to the options of the program." << endl;
+//	cout << endl;
+} 
+//}while (getch()=='e');
+}
+
+ void card()
+{
+	char name[10];
+	char cno[10];
+	int cardid;
+	cout<<"\t\t\t\tWelcome to register for fast tag facility";
+		ofstream myfile;
+	  myfile.open ("tag.txt",ios::out|ios::app);
+		
+	cout<<" \n\t\t\t\t Enter your name: ";
+	cin>>name;
+	myfile << "Name of the User." <<name<< endl; 
+		cout<<"\t\t\t\tEnter your mobile number: ";
+	cin>>cno;
+	myfile << "Mobile number of the User." <<cno<< endl; 
+	system("CLS");
+	int ID;
+		ID = rand() % 400000 + 4000000;
+	if (ID<0)
+	ID=(ID*-1);
+	cout<<"\t\t\t\tYour new fast tag id is - :" <<"\t"<<ID;
+	myfile << "Fast tag ID of the User is:-" <<ID<< endl; 
+		cout<<" \n You are now connected with the fast tag service. \n";
+myfile.close();
+}
+
+  int pass()
+{
+ 
+	char name[10];
+	char cno[10];
+	int cardid;
+	cout<<"\t\t\t\tWelcome to register for monthly pass facility";
+	ofstream myfile;
+   myfile.open ("pass.txt",ios::out|ios::app);
+	cout<<" \n\t\t\t\t Enter your name: ";
+	cin>>name;
+	myfile << "Name of the User." <<name<< endl; 
+		cout<<"\t\t\t\tEnter your mobile number: ";
+	cin>>cno;
+	myfile << "Mobile number of the User." <<cno<< endl; 
+	system("CLS");
+	{
+		
+		char vehicle ;
+	cout<<"select Your vehicle type"<<endl;
+	cout<<"M for MOtorbike"<<endl;
+	cout<<"C for car"<<endl;
+	cout<<"G for Government vehicles"<<endl;
+	cout<<"V for Van"<<endl;
+	cout<<"T for Truck"<<endl;
+	cout<<"B for Bus"<<endl;
+	cin>>vehicle;
+		system("CLS");
+		char vno[20];
+		if(vehicle=='T'||vehicle=='B'||vehicle=='C'||vehicle=='V'||vehicle=='M'||vehicle=='G')
+	
+	  
+		if(vehicle=='T')		
+			{  
+			myfile << "The vehicle type of the User is a truck." << endl; 
+			cout<<"Enter the Vehicle no for Registration :";
+		 cin>>vno;
+			myfile << "The vehicle number of the User for which he registered is . " <<vno<< endl; 
+			cout<<"Please pay 6000 RS at the counter"<<endl	;
+							}
+	else	 if(vehicle=='C')
+		
+		{
+				myfile << "The vehicle type of the User is a Car." << endl; 
+			cout<<"Enter the Vehicle no for Registration :";
+			cin>>vno;
+			myfile << "The vehicle number of the User for which he registered is . " <<vno<< endl; 
+		 	cout<<"Please pay 5500 RS at the counter"<<endl	;
+			}
+		else if(vehicle=='M')
+		{ 	
+			myfile << "The vehicle type of the User is a Motorbike." << endl; 
+			cout<<"Enter the Vehicle no for Registration :";
+			cin>>vno;
+			myfile << "The vehicle number of the User for which he registered is . " <<vno<< endl; 
+		cout<<"Please pay 5000 RS at the counter"<<endl	;
+				}
+					
+		else if(vehicle=='B')
+		{
+			myfile << "The vehicle type of the User is a Bus." << endl; 
+			cout<<"Enter the Vehicle no for Registration :";
+			cin>>vno;
+			myfile << "The vehicle number of the User for which he registered is . " <<vno<< endl;  
+			cout<<"Please pay 6000 RS at the counter"<<endl	;
+					}		
+			
+		else if(vehicle=='V')
+		{
+			myfile << "The vehicle type of the User is a Van." << endl; 
+			cout<<"Enter the Vehicle no for Registration :";
+			cin>>vno;
+			myfile << "The vehicle number of the User for which he registered is . " <<vno<< endl;  
+		cout<<"Please pay 5500 RS at the counter"<<endl	;
+					}	  
+			
+		else
+		{ cout<<"Invalid Entry"<<endl;
+		cout<<"Enter the vehicle type  again: "<<endl; 
+	}
+}
+	int ID;
+	ID = rand() % 1000000 + 10000000;
+	if (ID<0)
+	ID=(ID*-1);
+	cout<<"\t\t\t\tYour Monthly Pass id is - :" <<"\t"<<ID;
+		myfile << "Monthly Pass Id of the user is " <<ID<< endl;
+		myfile.close();
+}
+
+int file()
+{
+	ofstream myfile;
+	  myfile.open ("ven.txt",ios::out|ios::app);
+	}
+	
+	
+	
+int det()
+{
+	  char text[1000];
+     char tex[1000];
+    char tet[1000];
+    string    t, q, filename; 
+       fstream fin("ven.txt");
+     while(fin>>tet)
+     {
+	 fin.getline(text,100);  
+	 fin.getline(tex,100); 
+	 fin.getline(tet,100);  
+    cout<<text<<endl;
+        cout<<tex<<endl;
+        cout<<tet<<endl;
+}
+		   fin.close();
+}
+int dett()
+{
+	  char text[1000];
+     char tex[1000];
+    char tet[1000];
+    string    t, q, filename; 
+       fstream fin("tag.txt");
+     while(fin>>tet)
+     {
+	 fin.getline(text,100);  
+	 fin.getline(tex,100); 
+	 fin.getline(tet,100);  
+    cout<<text<<endl;
+        cout<<tex<<endl;
+        cout<<tet<<endl;
+}
+		   fin.close();
+}
+int deta()
+{
+	  char text[1000];
+     char tex[1000];
+    char tet[1000];
+    string    t, q, filename; 
+       fstream fin("pass.txt");
+     while(fin>>tet)
+     {
+	 fin.getline(text,100);  
+	 fin.getline(tex,100); 
+	 fin.getline(tet,100);  
+    cout<<text<<endl;
+        cout<<tex<<endl;
+        cout<<tet<<endl;
+}
+		   fin.close();
+}
+
+
+
+int pas()
+{
+    string
+    command, 
+    name, password, 
+    inName, inPassword, 
+    registerName, registerPassword; 
+   
+    while (1)
+    {
+        cout<<"(register/exit/login)\n"
+            <<"Command: ";
+        getline(cin, command);
+       
+        if (command=="exit")
+        {
+            return 1;
+        }
+        if (command=="register") 
+        {
+           
+            ofstream g("registration.txt"); //ofstream is the one for getting data from the file, 
+            
+            if (!g.is_open())
+            {
+                cout<<"could not open file\n"; 
+                return 0;
+            }
+            cout<<"\n\n\n" 
+                <<"New Username: ";
+            getline(cin, registerName); 
+            cout<<"New Password: ";
+            getline(cin, registerPassword); 
+            g<<registerName; 
+            g<<'\n'; 
+            g<<registerPassword; 
+           
+            g.close(); 
+        if (command=="login")
+        {
+            
+            ifstream f("registration.txt"); 
+            if (!f.is_open()) 
+            {
+                cout<<"could not open file\n"; 
+                return 0;
+            }
+            getline(f, name, '\n'); 
+            getline(f, password, '\n'); 
+            f.close(); 
+            while (1)
+            {
+                
+                cout<<"\n\n\n"
+                    <<"Enter Username: ";
+                getline(cin, inName);
+                cout<<"Enter Password: ";
+                getline(cin, inPassword);
+               
+                if (inName==name && inPassword==password)
+                {
+                    cout<<"Login Successful\n" 
+                        <<"Welcome, "
+                        <<inName;
+                    break; 
+                }
+                cout<<"incorrect name or password\n"; 
+            }
+            
+        }
+        cout<<"\n\n\n\n\n"; 
+    }
+    return 1;
+}
+}
+    
+    
+    
